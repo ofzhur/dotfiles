@@ -1,11 +1,23 @@
 #!/bin/bash
 
+function failure() {
+  echo "==============================="
+  echo "######## ERROR OCCURED ########"
+  echo "==============================="
+  echo ""
+  echo "Error during setup occrued:"
+  echo $1
+  exit 1
+}
+
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "Linux detected... Trying to get distro"
   OSINFO=`cat /etc/*release`
+
   if [[ "$OSINFO" == *"Ubuntu"* ]]; then
     echo "Ubuntu detected..."
   fi
+
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   echo "Mac OS detected"
 else
@@ -13,7 +25,7 @@ else
   exit 1
 fi
 
-exit 0
+which zsh || failure "zsh binary not found on this system"
 
 # install ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
