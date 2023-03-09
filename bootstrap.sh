@@ -1,5 +1,19 @@
 #!/bin/bash
 
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  echo "Linux detected... Trying to get distro"
+  OSINFO=`cat /etc/*release`
+  if [[ "$OSINFO" == *"Ubuntu"* ]]; then
+    echo "Ubuntu detected..."
+  fi
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  echo "Mac OS detected"
+else
+  echo "Unknown platform, exiting..."
+  exit 1
+fi
+
+exit 0
 
 # install ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
