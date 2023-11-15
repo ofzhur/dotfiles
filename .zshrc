@@ -37,3 +37,10 @@ export LANG=de_DE.UTF-8
 # Extra settings
 eval "$(op completion zsh)"; compdef _op op
 
+# postgres
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+# mysql
+export PATH="/opt/homebrew/Cellar/mysql-client/8.1.0/bin:$PATH"
+
+# git command for equativ
+alias ge="git -c 'core.sshCommand=ssh -i ~/.ssh/equativ.id_rsa -F /dev/null'"
